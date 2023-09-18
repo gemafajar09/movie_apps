@@ -18,9 +18,7 @@ class HomeFragment : Fragment() {
 
     private var _binding : FragmentHomeBinding? = null
     private val binding get() = _binding
-
     private lateinit var homeAdapter: HomeAdapter
-
     private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
@@ -69,7 +67,6 @@ class HomeFragment : Fragment() {
         homeAdapter = HomeAdapter {
 
         }
-
     }
 
 }

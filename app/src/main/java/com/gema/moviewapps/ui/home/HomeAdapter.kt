@@ -43,21 +43,21 @@ class HomeAdapter(
 
     companion object {
         val DIFF_CALLBACK: DiffUtil.ItemCallback<MoviewResponse.ResultsItem> =
-            object : DiffUtil.ItemCallback<MoviewResponse.ResultsItem>() {
-                override fun areItemsTheSame(
-                    oldItem: MoviewResponse.ResultsItem,
-                    newItem: MoviewResponse.ResultsItem
-                ): Boolean {
-                    return oldItem.id == newItem.id
-                }
-
-                @SuppressLint("DiffUtilEquals")
-                override fun areContentsTheSame(
-                    oldItem: MoviewResponse.ResultsItem,
-                    newItem: MoviewResponse.ResultsItem
-                ): Boolean {
-                    return oldItem == newItem
-                }
+        object : DiffUtil.ItemCallback<MoviewResponse.ResultsItem>() {
+            override fun areItemsTheSame(
+                oldItem: MoviewResponse.ResultsItem,
+                newItem: MoviewResponse.ResultsItem
+            ): Boolean {
+                return oldItem.id == newItem.id
             }
+
+            @SuppressLint("DiffUtilEquals")
+            override fun areContentsTheSame(
+                oldItem: MoviewResponse.ResultsItem,
+                newItem: MoviewResponse.ResultsItem
+            ): Boolean {
+                return oldItem == newItem
+            }
+        }
     }
 }
