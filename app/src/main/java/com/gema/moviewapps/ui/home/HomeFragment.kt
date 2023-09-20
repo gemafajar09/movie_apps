@@ -35,13 +35,17 @@ class HomeFragment : Fragment() {
         setupList()
         getDataHome()
         setupRecyclerView()
+
+        binding!!.rfSwipe.setOnRefreshListener {
+            getDataHome()
+            binding!!.rfSwipe.isRefreshing = false
+        }
     }
 
     private fun getDataHome() {
         viewModel.getHome(Constan.getToken).observe(viewLifecycleOwner) { result ->
             when(result){
                 is Resouce.Loading -> {
-                    //looading
                     binding?.apply {
                         shimmerLoading.visibility = View.VISIBLE
                         rvMovie.visibility = View.GONE
@@ -56,7 +60,7 @@ class HomeFragment : Fragment() {
                     binding!!.rvMovie.visibility = View.VISIBLE
                 }
                 is Resouce.Error -> {
-                    //looading
+                    //Error
                 }
             }
         }
