@@ -5,8 +5,8 @@
 
     <item
         android:id="@+id/homeFragment"
-        android:title="Home"
-        tools:icon="@drawable/baseline_home_24" />
+        tools:icon="@drawable/baseline_home_24"
+        android:title="Home" />
     <item
         android:id="@+id/favoriteFragment"
         android:icon="@drawable/baseline_favorite_24"
