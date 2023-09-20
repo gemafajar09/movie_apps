@@ -10,5 +10,5 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val dataRepository: DataRepository
 ) : ViewModel(){
-    fun getHome(token: String) = dataRepository.getDataMoview(token).asLiveData()
+    fun getHome(token: String) = dataRepository.getDataMovie(token).asLiveData()
 }

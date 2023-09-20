@@ -6,16 +6,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.gema.moviewapps.BuildConfig
+import com.gema.moviewapps.R
 import com.gema.moviewapps.data.remote.response.MoviewResponse
-import com.gema.moviewapps.databinding.MovieItemBinding
-import com.squareup.picasso.Picasso
+import com.gema.moviewapps.databinding.ItemMovieBinding
 
 class HomeAdapter(
     private val onItemClick: (MoviewResponse.ResultsItem) -> Unit
 ) : ListAdapter<MoviewResponse.ResultsItem, HomeAdapter.ViewHolder>(DIFF_CALLBACK) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = MovieItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -23,15 +24,18 @@ class HomeAdapter(
         holder.bind(getItem(position))
     }
 
-    inner class ViewHolder(private val binding: MovieItemBinding) :
+    inner class ViewHolder(private val binding: ItemMovieBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: MoviewResponse.ResultsItem) {
             binding.apply {
                 tvTitle.text = data.title
                 tvOverview.text = data.overview
+                tvRating.text = data.voteAverage.toString()
 
-                Picasso.get()
+                Glide.with(itemView.context)
                     .load(BuildConfig.IMAGE_PATH+data.posterPath)
+                    .placeholder(android.R.color.darker_gray)
+                    .error(R.drawable.woman)
                     .into(ivPanel)
 
                 itemView.setOnClickListener {

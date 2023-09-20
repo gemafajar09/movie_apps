@@ -18,11 +18,11 @@ class RemoteDataSource @Inject constructor(
         emit(Resouce.Loading())
         val response = apiService.dataMovie(token)
         response.let {
-            if(it.results.isNullOrEmpty()) emit(Resouce.Success(it))
+            if(it.results!!.isNotEmpty()) emit(Resouce.Success(it))
             else emit(Resouce.Error("Data User Tidak Ditemukan"))
         }
     }.catch {
-        Log.d(TAG, "dataUser: ${it.message}")
+        Log.d(TAG, it.message.toString())
     }.flowOn(Dispatchers.IO)
 
 }
