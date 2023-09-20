@@ -18,7 +18,7 @@ class HomeFragment : Fragment() {
 
     private var _binding : FragmentHomeBinding? = null
     private val binding get() = _binding
-    private lateinit var homeAdapter: HomeAdapter
+    private lateinit var homeAdapter : HomeAdapter
     private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
@@ -42,11 +42,18 @@ class HomeFragment : Fragment() {
             when(result){
                 is Resouce.Loading -> {
                     //looading
+                    binding?.apply {
+                        shimmerLoading.visibility = View.VISIBLE
+                        rvMovie.visibility = View.GONE
+                    }
                 }
                 is Resouce.Success -> {
                     val dataMovie = result.data
                     homeAdapter.submitList(dataMovie.results)
                     setupRecyclerView()
+
+                    binding!!.shimmerLoading.visibility = View.GONE
+                    binding!!.rvMovie.visibility = View.VISIBLE
                 }
                 is Resouce.Error -> {
                     //looading

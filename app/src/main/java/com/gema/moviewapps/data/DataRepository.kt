@@ -6,5 +6,5 @@ import javax.inject.Inject
 class DataRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource
 ) {
-    fun getDataMoview(token: String) = remoteDataSource.dataMovie(token)
+    fun getDataMovie(token: String) = remoteDataSource.dataMovie(token)
 }
