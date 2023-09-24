@@ -1,17 +1,18 @@
 package com.gema.moviewapps.ui.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.gema.moviewapps.BuildConfig
 import com.gema.moviewapps.data.Resouce
 import com.gema.moviewapps.databinding.FragmentHomeBinding
 import com.gema.moviewapps.util.Constan
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -34,7 +35,6 @@ class HomeFragment : Fragment() {
 
         setupList()
         getDataHome()
-        setupRecyclerView()
 
         binding!!.rfSwipe.setOnRefreshListener {
             getDataHome()
@@ -53,6 +53,7 @@ class HomeFragment : Fragment() {
                 }
                 is Resouce.Success -> {
                     val dataMovie = result.data
+
                     homeAdapter.submitList(dataMovie.results)
                     setupRecyclerView()
 
@@ -70,6 +71,7 @@ class HomeFragment : Fragment() {
         binding?.rvMovie?.apply {
             adapter = homeAdapter
             layoutManager = LinearLayoutManager(requireActivity())
+            binding!!.rvMovie.layoutManager = GridLayoutManager(requireContext(), 2)
             setHasFixedSize(true)
         }
     }
