@@ -6,5 +6,5 @@ import com.gema.moviewapps.BuildConfig
 object Constan {
     const val TAG = "Response::::::::::::"
 
-    val getToken = "Bearer ${BuildConfig.API_READ_KEY}"
+    const val getToken = "Bearer ${BuildConfig.API_READ_KEY}"
 }

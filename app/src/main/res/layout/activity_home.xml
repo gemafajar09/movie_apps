@@ -6,45 +6,53 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeActivity">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragment_container"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="869dp"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/navigator_bottom" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomAppBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:backgroundTint="@color/blue"
-        app:fabCradleMargin="10dp"
-        app:contentInsetStart="0dp"
-        app:contentInsetEnd="0dp"
-        app:fabCradleRoundedCornerRadius="20dp"
-        app:fabAlignmentMode="center">
-        
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigation"
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_loading"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:itemIconTint="@color/shape_fill_color"
-            app:itemTextColor="@color/shape_text_color"
-            app:menu="@menu/bottombar_item"
-            android:layout_gravity="bottom"
-            app:labelVisibilityMode="labeled"
-            app:elevation="0dp"
-            android:backgroundTint="@android:color/transparent"/>
+            android:layout_margin="10dp">
 
-    </com.google.android.material.bottomappbar.BottomAppBar>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/baseline_qr_code_24"
-        android:tint="@color/white"
-        app:layout_anchor="@id/bottomAppBar"
-        android:contentDescription="Bottomnavigator" />
+                <include layout="@layout/shimmer_item_movie" />
+
+                <include layout="@layout/shimmer_item_movie" />
+
+                <include layout="@layout/shimmer_item_movie" />
+
+                <include layout="@layout/shimmer_item_movie" />
+
+                <include layout="@layout/shimmer_item_movie" />
+
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/rf_swipe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_movie"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_row="2"
+                tools:layout_editor_absoluteX="1dp"
+                tools:layout_editor_absoluteY="1dp"
+                tools:listitem="@layout/item_movie" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </LinearLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

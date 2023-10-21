@@ -29,7 +29,7 @@ class HomeAdapter(
         fun bind(data: MoviewResponse.ResultsItem) {
             binding.apply {
                 tvTitle.text = data.title
-                tvOverview.text = data.overview
+                tvDeskripsi.text = data.overview?.take(100)
                 tvRating.text = data.voteAverage.toString()
 
                 Glide.with(itemView.context)
